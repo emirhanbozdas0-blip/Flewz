@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flewz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      overflow: hidden;
+      background: black;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .background {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at top, #1a1a1a, #000000 70%);
+      overflow: hidden;
+      z-index: -2;
+    }
+
+    .background::before,
+    .background::after {
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.25;
+      animation: move 10s infinite alternate ease-in-out;
+    }
+
+    .background::before {
+      background: #8b5cf6;
+      top: -100px;
+      left: -100px;
+    }
+
+    .background::after {
+      background: #06b6d4;
+      bottom: -100px;
+      right: -100px;
+    }
+
+    @keyframes move {
+      from {
+        transform: translateY(0px) translateX(0px);
+      }
+      to {
+        transform: translateY(40px) translateX(30px);
+      }
+    }
+
+    .card {
+      width: 350px;
+      backdrop-filter: blur(15px);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 30px;
+      padding: 40px 30px;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(0,0,0,0.6);
+      animation: fade 1.2s ease;
+    }
+
+    @keyframes fade {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin: auto;
+      background: url('https://i.imgur.com/ZSM5QpT.jpeg') center/cover;
+      border: 3px solid rgba(255,255,255,0.2);
+      box-shadow: 0 0 20px rgba(255,255,255,0.15);
+    }
+
+    h1 {
+      margin-top: 20px;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    p {
+      margin-top: 8px;
+      color: #cfcfcf;
+      font-size: 0.95rem;
+    }
+
+    .links {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .links a {
+      text-decoration: none;
+      color: white;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 14px;
+      border-radius: 14px;
+      transition: 0.3s ease;
+      font-weight: 600;
+    }
+
+    .links a:hover {
+      transform: scale(1.04);
+      background: rgba(255,255,255,0.15);
+      box-shadow: 0 0 20px rgba(255,255,255,0.1);
+    }
+
+    .footer {
+      margin-top: 25px;
+      font-size: 0.75rem;
+      color: #8f8f8f;
+    }
+
+    .music-btn {
+      margin-top: 20px;
+      background: linear-gradient(90deg, #8b5cf6, #06b6d4);
+      border: none;
+      padding: 12px 18px;
+      color: white;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .music-btn:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="background"></div>
+
+  <div class="card">
+    <div class="avatar"></div>
+    <h1>Flewz</h1>
+    <p>Dark profile page</p>
+
+    <button class="music-btn" onclick="toggleMusic()">🎵 Müziği Aç / Kapat</button>
+
+    <div class="links">
+      <a href="https://www.instagram.com/justflewz/" target="_blank">Instagram</a>
+      <a href="https://kick.com/justflewz" target="_blank">Kick</a>
+      <a href="https://discord.com" target="_blank">Discord</a>
+    </div>
+
+    <div class="footer">
+      © 2026 Flewz
+    </div>
+  </div>
+
+  <audio id="music" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2023/07/31/audio_5d5f5fd3f6.mp3?filename=dark-ambient-145038.mp3" type="audio/mp3">
+  </audio>
+
+  <script>
+    const music = document.getElementById('music');
+    let playing = false;
+
+    function toggleMusic() {
+      if (!playing) {
+        music.play();
+        playing = true;
+      } else {
+        music.pause();
+        playing = false;
+      }
+    }
+  </script>
+</body>
+</html>
